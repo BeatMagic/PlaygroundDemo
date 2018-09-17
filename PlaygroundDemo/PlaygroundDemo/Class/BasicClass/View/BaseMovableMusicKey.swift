@@ -10,21 +10,27 @@ import UIKit
 
 class BaseMovableMusicKey: BaseMusicKey {
     
+    var ownCenter = CGPoint.zero
+    
+    override init(frame: CGRect, mainKey: Int, borderColor: UIColor, toneKey: MusicKeyAttributesModel.KeyToneAggregate, pitch: UInt8, kind: MusicKeyAttributesModel.KeyKinds) {
+        
+        super.init(frame: frame,
+                   mainKey: mainKey,
+                   borderColor: borderColor,
+                   toneKey: toneKey,
+                   pitch: pitch,
+                   kind: kind)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func setData() {
         super.setData()
         
-        // 拖动手势
-        let panGesture = UIPanGestureRecognizer.init(target: nil, action: #selector(self.detectPan(_:)))
-        
-        self.addGestureRecognizer(panGesture)
+        self.isUserInteractionEnabled = true
+
     }
     
-}
-
-extension BaseMovableMusicKey {
-    /// 拖动手势
-    @objc func detectPan(_ recognizer:UIPanGestureRecognizer) {
-        let translation = recognizer.translation(in: self.superview)
-        self.center = CGPoint(x: self.getX() + translation.x, y: self.getY() + translation.y)
-    }
 }

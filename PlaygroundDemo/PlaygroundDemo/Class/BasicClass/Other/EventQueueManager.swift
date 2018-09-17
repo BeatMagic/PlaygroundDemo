@@ -27,13 +27,3 @@ class EventQueueManager: NSObject {
         NotificationCenter.default.post(name: name, object: nil)
     }
 }
-
-
-extension EventQueueManager: BeatTimerDelegate{
-     func doThingsWhenTiming(){
-        
-        EventQueueManager.count += 1
-        EventQueueManager.lastCountTime = Date().timeIntervalSince1970
-        
-    }
-}

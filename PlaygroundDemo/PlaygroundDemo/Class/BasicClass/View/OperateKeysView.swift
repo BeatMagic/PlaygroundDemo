@@ -146,19 +146,42 @@ extension OperateKeysView {
         
         for viewModel in self.musicKeyViewModelArray {
             
-            let musicKey = BaseMusicKey.init(
-                frame: viewModel.ownFrame,
-                mainKey: viewModelIndex,
-                borderColor: .white,
-                toneKey: .Piano,
-                pitch: maxPitch,
-                kind: viewModel.ownKind)
+            var musicKey:BaseMusicKey
+            
+            if viewModel.ownKind == .Movable {
+                musicKey = BaseMovableMusicKey.init(
+                    frame: viewModel.ownFrame,
+                    mainKey: viewModelIndex,
+                    borderColor: .white,
+                    toneKey: .Piano,
+                    pitch: maxPitch,
+                    kind: viewModel.ownKind
+                )
+                
+            }else {
+                musicKey = BaseMusicKey.init(
+                    frame: viewModel.ownFrame,
+                    mainKey: viewModelIndex,
+                    borderColor: .white,
+                    toneKey: .Piano,
+                    pitch: maxPitch,
+                    kind: viewModel.ownKind
+                )
+                
+            }
+            
+            
+
             
             switch viewModel.ownKind {
             case .Movable:
                 musicKey.borderColor = UIColor.clear
                 musicKey.backgroundColor = UIColor.flatOrange
+                let panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(self.draggedView(_:)))
+                panGesture.cancelsTouchesInView = false
+                musicKey.addGestureRecognizer(panGesture)
                 
+
             case .BorderVariable:
                 musicKey.borderColor = UIColor.flatOrange
                 
@@ -179,7 +202,24 @@ extension OperateKeysView {
 
 // MARK: - 拖动等动作事件
 extension OperateKeysView {
-
+    @objc func draggedView(_ sender: UIPanGestureRecognizer){
+        let keyDrag = self.musicKeyArray[1] as! BaseMovableMusicKey
+        self.bringSubview(toFront: keyDrag)
+        
+        switch sender.state {
+        case .began:
+            keyDrag.ownCenter = keyDrag.center
+            
+        case .ended, .failed, .cancelled:
+            keyDrag.center = keyDrag.ownCenter
+            
+        default:
+            let location = sender.location(in: self)
+            keyDrag.center = location
+        }
+        
+    }
+    
 }
 
 // MARK: - 重载Touch事件

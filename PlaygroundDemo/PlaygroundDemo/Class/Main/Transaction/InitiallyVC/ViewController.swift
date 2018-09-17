@@ -26,6 +26,12 @@ class ViewController: UIViewController {
     }
     
     func setData() -> Void {
+        BeatTimer.delegate = self
+        MusicAttributesModel.BeatsCountInOneMinute = 60
+    }
+    
+    func setUI() -> Void {
+        self.view.backgroundColor = UIColor.black
         self.keysView = OperateKeysView.init(frame: CGRect.init(
             x: 0,
             y: 0,
@@ -33,13 +39,17 @@ class ViewController: UIViewController {
             height: ToolClass.getScreenHeight()))
         
         self.view.addSubview(self.keysView)
-    }
-    
-    func setUI() -> Void {
-        self.view.backgroundColor = UIColor.black
-        
         
     }
 
+}
+
+extension ViewController: BeatTimerDelegate {
+    func doThingsWhenTiming() {
+        EventQueueManager.count += 1
+        EventQueueManager.lastCountTime = Date().timeIntervalSince1970
+        print(BeatTimer.getCurrentBeatTime())
+    }
+    
 }
 

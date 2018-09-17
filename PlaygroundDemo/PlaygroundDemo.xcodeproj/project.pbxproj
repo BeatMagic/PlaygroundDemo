@@ -247,6 +247,7 @@
 				7C0ED139214BE2CB00410949 /* Frameworks */,
 				7C0ED13A214BE2CB00410949 /* Resources */,
 				44C60A1F28C37C2BE1526FA8 /* [CP] Embed Pods Frameworks */,
+				7CE48731214FD9EA00205EB0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -343,6 +344,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PlaygroundDemo/Pods-PlaygroundDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		7CE48731214FD9EA00205EB0 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "TAGS=\"TODO:|FIXME:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
 		};
 /* End PBXShellScriptBuildPhase section */
 

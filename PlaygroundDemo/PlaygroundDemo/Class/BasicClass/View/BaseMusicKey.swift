@@ -31,9 +31,9 @@ class BaseMusicKey: UIView {
     /// 按钮状态
     var pressStatus: MusicKeyAttributesModel.KeyStatus = .Unpressed {
         didSet {
-            
-            /// 发送通知
-            print("\(self.mainKey!)号按钮\(pressStatus)")
+
+            // TODO: 发送通知
+//            print("\(self.mainKey!)号按钮\(pressStatus)")
         }
     }
     
@@ -91,8 +91,8 @@ extension BaseMusicKey {
 
     }// funcEnd
     
-    /// [通知]发出声音
+    /// [通知调用]发出声音
     @objc func makeNoise() -> Void {
-        
+      // TODO: 发出声音
     }
 }
