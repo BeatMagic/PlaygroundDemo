@@ -17,7 +17,6 @@ class SoundEngine: NSObject {
     
     override init(){
         
-        
         AudioKit.output = mixer
         do {
             try AudioKit.start()

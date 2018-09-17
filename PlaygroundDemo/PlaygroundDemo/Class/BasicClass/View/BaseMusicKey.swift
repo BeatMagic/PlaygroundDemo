@@ -9,6 +9,9 @@
 import UIKit
 
 class BaseMusicKey: UIView {
+    /// 主键
+    let mainKey: Int!
+    
     /// 边框颜色
     var borderColor: UIColor = UIColor.white {
         didSet {
@@ -28,23 +31,25 @@ class BaseMusicKey: UIView {
     /// 按钮状态
     var pressStatus: MusicKeyAttributesModel.KeyStatus = .Unpressed {
         didSet {
-            
-            
-            /// 发送通知
-            print("111")
+
+            // TODO: 发送通知
+//            print("\(self.mainKey!)号按钮\(pressStatus)")
         }
     }
     
-
     
+    /// 拖动的最后位置
+    var lastLocation = CGPoint(x: 0, y: 0)
     
     
     init(frame: CGRect,
+         mainKey: Int,
          borderColor: UIColor,
          toneKey: MusicKeyAttributesModel.KeyToneAggregate,
          pitch: UInt8,
          kind: MusicKeyAttributesModel.KeyKinds) {
         
+        self.mainKey = mainKey
         self.borderColor = borderColor
         self.kind = kind
         self.toneKey = toneKey
@@ -52,6 +57,7 @@ class BaseMusicKey: UIView {
         
         super.init(frame: frame)
         
+        self.setData()
         self.setUI()
     }
     
@@ -63,7 +69,7 @@ class BaseMusicKey: UIView {
     
 }
 
-// MARK: - touch事件
+// MARK: - 设置自身属性
 extension BaseMusicKey {
     /// 设置UI
     func setUI() -> Void {
@@ -74,5 +80,19 @@ extension BaseMusicKey {
         
     }// funcEnd
     
+    /// 设置数据
+     @objc func setData() -> Void {
+        let name = Notification.Name(rawValue: EventQueueManager.MsgName)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.makeNoise),
+                                               name: name,
+                                               object: nil)
+
+
+    }// funcEnd
     
+    /// [通知调用]发出声音
+    @objc func makeNoise() -> Void {
+      // TODO: 发出声音
+    }
 }
