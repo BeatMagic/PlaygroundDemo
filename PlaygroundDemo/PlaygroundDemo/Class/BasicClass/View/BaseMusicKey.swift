@@ -49,6 +49,12 @@ class BaseMusicKey: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+
+    
+}
+
+// MARK: - touch事件
+extension BaseMusicKey {
     /// 设置UI
     func setUI() -> Void {
         self.backgroundColor = UIColor.black
@@ -57,27 +63,4 @@ class BaseMusicKey: UIView {
         self.layer.cornerRadius = FrameStandard.KeyBorderWidthAggregate.normal.rawValue * 4
         
     }// funcEnd
-    
-}
-
-// MARK: - touch事件
-extension BaseMusicKey {
-    
-//    // 点击
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for touch in touches {
-//            let touchPoint = touch.location(in: self)
-//            print("点击\(touchPoint)")
-//        }
-//
-//    }
-//
-//    // 滑动
-//    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for touch in touches {
-//            let touchPoint = touch.location(in: self)
-//            print("滑动\(touchPoint)")
-//        }
-//    }
-
 }

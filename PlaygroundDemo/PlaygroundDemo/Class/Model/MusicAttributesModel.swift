@@ -19,5 +19,35 @@ class MusicAttributesModel: UIView {
         case pressed = 0
         case unpressed = 1
     }
+    
+    /// 一分钟的拍子数
+    static var BeatsCountInOneMinute: Double = 60 {
+        didSet {
+            let sectionTime = BeatsCountInOneMinute / 60 * 4
+            let everyBeatTime = sectionTime / 16
+
+            BeatTimer.setBeatTimer(everyBeatTime: everyBeatTime, sectionTime: sectionTime)
+        }
+    }
+    
+    /// 标准: 一小节几个Beat
+    static var StandardBeatsCountInOneSection: Double = 4 {
+        didSet {
+            let sectionTime = BeatsCountInOneMinute / 60 * 4
+            let everyBeatTime = sectionTime / 16
+            
+            BeatTimer.setBeatTimer(everyBeatTime: everyBeatTime, sectionTime: sectionTime)
+        }
+    }
+    
+    /// 本地设置: 一小节几个Beat
+    static var LocalBeatsCountInOneSection: Double = 16 {
+        didSet {
+            let sectionTime = BeatsCountInOneMinute / 60 * 4
+            let everyBeatTime = sectionTime / 16
+            
+            BeatTimer.setBeatTimer(everyBeatTime: everyBeatTime, sectionTime: sectionTime)
+        }
+    }
 
 }
