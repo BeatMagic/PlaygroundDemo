@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18824C36214F66510087CAA8 /* TimbreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18824C35214F66510087CAA8 /* TimbreManager.swift */; };
 		18E070A3214CF05A00152D1A /* SoundEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E070A2214CF05A00152D1A /* SoundEngine.swift */; };
 		6975700FD411D0B023CADBDB /* Pods_PlaygroundDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FA98C27E219E20BF105CB6 /* Pods_PlaygroundDemo.framework */; };
 		7C0ED140214BE2CB00410949 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0ED13F214BE2CB00410949 /* AppDelegate.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18824C35214F66510087CAA8 /* TimbreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimbreManager.swift; sourceTree = SOURCE_ROOT; };
 		18E070A2214CF05A00152D1A /* SoundEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEngine.swift; sourceTree = SOURCE_ROOT; };
 		40FA98C27E219E20BF105CB6 /* Pods_PlaygroundDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlaygroundDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62A2D62EBF958767ACAF444C /* Pods-PlaygroundDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaygroundDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlaygroundDemo/Pods-PlaygroundDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				18E070A2214CF05A00152D1A /* SoundEngine.swift */,
+				18824C35214F66510087CAA8 /* TimbreManager.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -331,6 +334,7 @@
 				7C451B3D214CF94400E03F83 /* OperateKeysView.swift in Sources */,
 				7C451B37214CEA8800E03F83 /* BaseMusicKey.swift in Sources */,
 				7C0ED142214BE2CB00410949 /* ViewController.swift in Sources */,
+				18824C36214F66510087CAA8 /* TimbreManager.swift in Sources */,
 				7C451B3B214CEF6000E03F83 /* FrameStandard.swift in Sources */,
 				7C451B33214CEA1600E03F83 /* BasicKnowledge.swift in Sources */,
 				7C451B34214CEA1600E03F83 /* ExtensionForSomeClass.swift in Sources */,
