@@ -10,8 +10,9 @@ import UIKit
 
 class MusicAttributesModel: UIView {
     /// 按钮音色枚举
-    enum KeyToneAggregate: String {
-        case Tone1 = "Tone1"
+    enum KeyToneAggregate: Int {
+        case Piano = 0, Pad, Bass, Drum
+
     }
     
     /// 按钮状态(按下 / 抬起 ...)
