@@ -19,6 +19,8 @@ class KeyTouchEvent: NSObject {
     var type:TouchEventType!
     var keyId:Int!
     
+    //进queue时候一个id
+    var inqueueId:Int?
     
     init(id:Int, ctime:Double,type:TouchEventType){
         self.keyId = id
