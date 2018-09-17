@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18E070A3214CF05A00152D1A /* SoundEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E070A2214CF05A00152D1A /* SoundEngine.swift */; };
 		6975700FD411D0B023CADBDB /* Pods_PlaygroundDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FA98C27E219E20BF105CB6 /* Pods_PlaygroundDemo.framework */; };
 		7C0ED140214BE2CB00410949 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0ED13F214BE2CB00410949 /* AppDelegate.swift */; };
 		7C0ED142214BE2CB00410949 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0ED141214BE2CB00410949 /* ViewController.swift */; };
@@ -24,6 +25,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		18E070A2214CF05A00152D1A /* SoundEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEngine.swift; sourceTree = SOURCE_ROOT; };
 		40FA98C27E219E20BF105CB6 /* Pods_PlaygroundDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlaygroundDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62A2D62EBF958767ACAF444C /* Pods-PlaygroundDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaygroundDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlaygroundDemo/Pods-PlaygroundDemo.release.xcconfig"; sourceTree = "<group>"; };
 		7C0ED13C214BE2CB00410949 /* PlaygroundDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlaygroundDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +206,7 @@
 		7C297FDB214CD31B00FF619A /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				18E070A2214CF05A00152D1A /* SoundEngine.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				7C0ED148214BE2CB00410949 /* PlaygroundDemo.xcdatamodeld in Sources */,
 				7C451B39214CEC6400E03F83 /* MusicAttributesModel.swift in Sources */,
 				7C0ED140214BE2CB00410949 /* AppDelegate.swift in Sources */,
+				18E070A3214CF05A00152D1A /* SoundEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
