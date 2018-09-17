@@ -160,7 +160,7 @@ extension UIView {
     ///   - interval: 每次抖动时间（默认0.1秒）
     ///   - delta: 抖动偏移量（默认2）
     ///   - completion: 抖动动画结束后的回调
-    public func shake(direction: ShakeDirection = .horizontal, times: Int = 16, interval: TimeInterval = 0.01, delta: CGFloat = 2, completion: (() -> Void)? = nil)
+    public func shake(direction: ShakeDirection = .horizontal, times: Int = 16, interval: TimeInterval = 0.01, delta: CGFloat = 3.5, completion: (() -> Void)? = nil)
     {
         UIView.animate(withDuration: interval, animations: {
             
