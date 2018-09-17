@@ -38,6 +38,9 @@ class BaseMusicKey: UIView {
     }
     
     
+    /// 拖动的最后位置
+    var lastLocation = CGPoint(x: 0, y: 0)
+    
     
     init(frame: CGRect,
          mainKey: Int,
@@ -66,7 +69,7 @@ class BaseMusicKey: UIView {
     
 }
 
-// MARK: - touch事件
+// MARK: - 设置自身属性
 extension BaseMusicKey {
     /// 设置UI
     func setUI() -> Void {
@@ -78,19 +81,18 @@ extension BaseMusicKey {
     }// funcEnd
     
     /// 设置数据
-    func setData() -> Void {
+     @objc func setData() -> Void {
         let name = Notification.Name(rawValue: EventQueueManager.MsgName)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(self.makeNoise),
                                                name: name,
                                                object: nil)
-        
+
+
     }// funcEnd
     
     /// [通知]发出声音
     @objc func makeNoise() -> Void {
         
     }
-    
-    
 }

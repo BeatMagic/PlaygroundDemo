@@ -177,6 +177,11 @@ extension OperateKeysView {
     
 }
 
+// MARK: - 拖动等动作事件
+extension OperateKeysView {
+
+}
+
 // MARK: - 重载Touch事件
 extension OperateKeysView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -214,14 +219,25 @@ extension OperateKeysView {
                     // 两次点击的按钮不一致
                     if pressedKey!.mainKey != previousPressedKey!.mainKey {
                         pressedKey!.pressStatus = .Pressed
-                        
+                        previousPressedKey!.pressStatus = .Unpressed
                     }
                     
                 }else {
                     pressedKey!.pressStatus = .Pressed
                     
                 }
+                
+                
+                
+            }else {
+                // 上次点击的按钮不为空
+                if previousPressedKey != nil {
+                    previousPressedKey!.pressStatus = .Unpressed
+                    
+                }
             }
+            
+            self.lastTouchKeyDict[touchAddress]! = pressedKey
         }
     }
     
@@ -229,6 +245,12 @@ extension OperateKeysView {
         
         for touch in touches {
             let touchAddress = String(format: "%p",  touch)
+            let lastKey = self.lastTouchKeyDict[touchAddress]!
+            if lastKey != nil {
+                lastKey!.pressStatus = .Unpressed
+                
+            }
+            
             self.lastTouchKeyDict.removeValue(forKey: touchAddress)
 
         }
@@ -237,6 +259,12 @@ extension OperateKeysView {
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
         for touch in touches {
             let touchAddress = String(format: "%p",  touch)
+            let lastKey = self.lastTouchKeyDict[touchAddress]!
+            if lastKey != nil {
+                lastKey!.pressStatus = .Unpressed
+                
+            }
+            
             self.lastTouchKeyDict.removeValue(forKey: touchAddress)
             
         }
@@ -268,3 +296,63 @@ extension OperateKeysView {
     
 }
 
+
+/*
+import UIKit
+
+class ViewController: UIViewController {
+    //拖动的view
+    @IBOutlet weak var myView: UIView!
+    //拖动view的上约束
+    @IBOutlet weak var myViewTopLayoutConstraint: NSLayoutConstraint!
+    //拖动手势
+    @IBOutlet var panGesture: UIPanGestureRecognizer!
+ 
+    //保存初始时拖动view上约束的值
+    var myViewTopLayoutConstant: CGFloat!
+    //保存初始时拖动view的y坐标值
+    var myViewOriginY: CGFloat!
+ 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        //添加拖动手势响应
+        panGesture.addTarget(self, action: #selector(ViewController.pan))
+        //保存初始时拖动view上约束的值（用于后面还原）
+        myViewTopLayoutConstant = myViewTopLayoutConstraint.constant
+    }
+ 
+    //拖动手势
+    func pan() {
+        //拖动开始
+        if panGesture.state == .began {
+            myViewOriginY = myView.frame.origin.y
+        }
+ 
+            //拖动过程
+        else if panGesture.state == .changed {
+            let y = panGesture.translation(in: self.view).y
+            myViewTopLayoutConstraint.constant = myViewTopLayoutConstant + y
+        }
+ 
+            //拖动结束
+        else if panGesture.state == .ended {
+            //回弹
+            UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
+                () -> Void in
+                self.myView.frame.origin.y = self.myViewOriginY
+            }, completion: { (success) -> Void in
+                if success {
+                    //回弹动画结束后恢复默认约束值
+                    self.myViewTopLayoutConstraint.constant = self.myViewTopLayoutConstant
+                }
+            })
+            return
+        }
+    }
+ 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+}
+
+ */
