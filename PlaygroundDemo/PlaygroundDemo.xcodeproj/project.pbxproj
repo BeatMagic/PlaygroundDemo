@@ -14,6 +14,13 @@
 		7C0ED148214BE2CB00410949 /* PlaygroundDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7C0ED146214BE2CB00410949 /* PlaygroundDemo.xcdatamodeld */; };
 		7C0ED14A214BE2CC00410949 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C0ED149214BE2CC00410949 /* Assets.xcassets */; };
 		7C0ED14D214BE2CC00410949 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C0ED14B214BE2CC00410949 /* LaunchScreen.storyboard */; };
+		7C451B33214CEA1600E03F83 /* BasicKnowledge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C451B30214CEA1500E03F83 /* BasicKnowledge.swift */; };
+		7C451B34214CEA1600E03F83 /* ExtensionForSomeClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C451B31214CEA1500E03F83 /* ExtensionForSomeClass.swift */; };
+		7C451B35214CEA1600E03F83 /* ToolClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C451B32214CEA1600E03F83 /* ToolClass.swift */; };
+		7C451B37214CEA8800E03F83 /* BaseMusicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C451B36214CEA8800E03F83 /* BaseMusicKey.swift */; };
+		7C451B39214CEC6400E03F83 /* MusicAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C451B38214CEC6400E03F83 /* MusicAttributesModel.swift */; };
+		7C451B3B214CEF6000E03F83 /* FrameStandard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C451B3A214CEF6000E03F83 /* FrameStandard.swift */; };
+		7C451B3D214CF94400E03F83 /* OperateKeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C451B3C214CF94400E03F83 /* OperateKeysView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +34,13 @@
 		7C0ED149214BE2CC00410949 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7C0ED14C214BE2CC00410949 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7C0ED14E214BE2CC00410949 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7C451B30214CEA1500E03F83 /* BasicKnowledge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicKnowledge.swift; sourceTree = "<group>"; };
+		7C451B31214CEA1500E03F83 /* ExtensionForSomeClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExtensionForSomeClass.swift; sourceTree = "<group>"; };
+		7C451B32214CEA1600E03F83 /* ToolClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToolClass.swift; sourceTree = "<group>"; };
+		7C451B36214CEA8800E03F83 /* BaseMusicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMusicKey.swift; sourceTree = "<group>"; };
+		7C451B38214CEC6400E03F83 /* MusicAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicAttributesModel.swift; sourceTree = "<group>"; };
+		7C451B3A214CEF6000E03F83 /* FrameStandard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameStandard.swift; sourceTree = "<group>"; };
+		7C451B3C214CF94400E03F83 /* OperateKeysView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OperateKeysView.swift; sourceTree = "<group>"; };
 		D7F9A49EC72610B7391A6D5A /* Pods-PlaygroundDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaygroundDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlaygroundDemo/Pods-PlaygroundDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,6 +128,7 @@
 		7C297FD1214CD0A100FF619A /* AppStandard */ = {
 			isa = PBXGroup;
 			children = (
+				7C451B3A214CEF6000E03F83 /* FrameStandard.swift */,
 			);
 			path = AppStandard;
 			sourceTree = "<group>";
@@ -128,6 +143,7 @@
 		7C297FD3214CD0A100FF619A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				7C451B38214CEC6400E03F83 /* MusicAttributesModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -161,6 +177,9 @@
 		7C297FD7214CD0A100FF619A /* GenericTools */ = {
 			isa = PBXGroup;
 			children = (
+				7C451B30214CEA1500E03F83 /* BasicKnowledge.swift */,
+				7C451B31214CEA1500E03F83 /* ExtensionForSomeClass.swift */,
+				7C451B32214CEA1600E03F83 /* ToolClass.swift */,
 			);
 			path = GenericTools;
 			sourceTree = "<group>";
@@ -176,6 +195,8 @@
 		7C297FDA214CD31600FF619A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7C451B36214CEA8800E03F83 /* BaseMusicKey.swift */,
+				7C451B3C214CF94400E03F83 /* OperateKeysView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -303,8 +324,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7C451B35214CEA1600E03F83 /* ToolClass.swift in Sources */,
+				7C451B3D214CF94400E03F83 /* OperateKeysView.swift in Sources */,
+				7C451B37214CEA8800E03F83 /* BaseMusicKey.swift in Sources */,
 				7C0ED142214BE2CB00410949 /* ViewController.swift in Sources */,
+				7C451B3B214CEF6000E03F83 /* FrameStandard.swift in Sources */,
+				7C451B33214CEA1600E03F83 /* BasicKnowledge.swift in Sources */,
+				7C451B34214CEA1600E03F83 /* ExtensionForSomeClass.swift in Sources */,
 				7C0ED148214BE2CB00410949 /* PlaygroundDemo.xcdatamodeld in Sources */,
+				7C451B39214CEC6400E03F83 /* MusicAttributesModel.swift in Sources */,
 				7C0ED140214BE2CB00410949 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
