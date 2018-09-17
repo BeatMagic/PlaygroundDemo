@@ -17,8 +17,8 @@ class OperateKeysView: UIView {
     var musicKeyViewModelArray: [MusicKeyViewModel] = []
 
     
-    /// 上一次touch事件的内存地址
-    var lastTouchAddr: String!
+    /// touch事件的内存地址: 该touch事件经过的最后一个按钮
+    var lastTouchKeyDict: [String: BaseMusicKey?] = [String: BaseMusicKey?]()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,7 +47,6 @@ extension OperateKeysView {
             MusicKeyViewModel.init(tmpRect, .BorderVariable),
             MusicKeyViewModel.init(tmpRect, .Normal),
             MusicKeyViewModel.init(tmpRect, .BorderVariable),
-            MusicKeyViewModel.init(tmpRect, .Normal),
             MusicKeyViewModel.init(tmpRect, .Normal),
             MusicKeyViewModel.init(tmpRect, .BorderVariable),
             MusicKeyViewModel.init(tmpRect, .Normal),
@@ -98,28 +97,28 @@ extension OperateKeysView {
                 }
                 
             // 右下角大的
-            case 9:
+            case 8:
                 viewModel.ownFrame = CGRect.init(
                     x: ToolClass.getScreenWidth() / 2 + generalHeight / 2,
-                    y: ToolClass.getScreenHeight() - 200,
+                    y: ToolClass.getScreenHeight() - 250,
                     width: ToolClass.getScreenWidth() / 2 - generalHeight,
                     height: 70
                 )
                 
-            case 10:
+            case 9:
                 
                 viewModel.ownFrame = CGRect.init(
                     x: ToolClass.getScreenWidth() / 2 + generalHeight / 2 + marginTop * 1.5,
-                    y: ToolClass.getScreenHeight() - 200 + marginTop * 1.5,
+                    y: ToolClass.getScreenHeight() - 250 + marginTop * 1.5,
                     width: ToolClass.getScreenWidth() / 2 - generalHeight - marginTop * 3,
                     height: 70 - marginTop * 3
                 )
                 
             // 左下角
-            case 11:
+            case 10:
                 viewModel.ownFrame = CGRect.init(
                     x: generalHeight / 2,
-                    y: ToolClass.getScreenHeight() - 200,
+                    y: ToolClass.getScreenHeight() - 250,
                     width: ToolClass.getScreenWidth() / 2 - generalHeight,
                     height: 70
                 )
@@ -139,13 +138,17 @@ extension OperateKeysView {
     /// setUI
     func setUI() -> Void {
         self.backgroundColor = UIColor.black
+        self.isMultipleTouchEnabled = true
         
         var maxPitch: UInt8 = 65
+        var viewModelIndex = 0
+        
         
         for viewModel in self.musicKeyViewModelArray {
             
             let musicKey = BaseMusicKey.init(
                 frame: viewModel.ownFrame,
+                mainKey: viewModelIndex,
                 borderColor: .white,
                 toneKey: .Piano,
                 pitch: maxPitch,
@@ -167,6 +170,7 @@ extension OperateKeysView {
             self.musicKeyArray.append(musicKey)
             
             maxPitch -= 1
+            viewModelIndex += 1
         }
         
     }
@@ -176,59 +180,91 @@ extension OperateKeysView {
 // MARK: - 重载Touch事件
 extension OperateKeysView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for touch in touches {
-//            self.lastTouchAddr = String(format: "%p",  touch)
-//
-//
-//
-//        }
+        for touch in touches {
+            let touchAddress = String(format: "%p",  touch)
+            
+            let pressedKey = self.judgeTouchMusicKey(touch.location(in: self))
+            self.lastTouchKeyDict[touchAddress] = pressedKey
+            
+            // 如果点到按钮就触发通知
+            if pressedKey != nil {
+                pressedKey!.pressStatus = .Pressed
+            }
+            
+            
+        }
         
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for touch in touches {
-//            self.lastTouchAddr = String(format: "%p",  touch)
-//
-//
-//
-//        }
+        for touch in touches {
+            let touchAddress = String(format: "%p",  touch)
+            // 上次点击的按钮
+            let previousPressedKey = self.lastTouchKeyDict[touchAddress]!
+            
+            // 本次点击的按钮
+            let pressedKey = self.judgeTouchMusicKey(touch.location(in: self))
+            
+            // 本次点击的按钮不为空
+            if pressedKey != nil {
+                
+                // 上次点击的按钮不为空
+                if previousPressedKey != nil {
+                    
+                    // 两次点击的按钮不一致
+                    if pressedKey!.mainKey != previousPressedKey!.mainKey {
+                        pressedKey!.pressStatus = .Pressed
+                        
+                    }
+                    
+                }else {
+                    pressedKey!.pressStatus = .Pressed
+                    
+                }
+            }
+        }
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        for touch in touches {
-//            self.lastTouchAddr = String(format: "%p",  touch)
-//
-//
-//
-//        }
+        
+        for touch in touches {
+            let touchAddress = String(format: "%p",  touch)
+            self.lastTouchKeyDict.removeValue(forKey: touchAddress)
+
+        }
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
+        for touch in touches {
+            let touchAddress = String(format: "%p",  touch)
+            self.lastTouchKeyDict.removeValue(forKey: touchAddress)
+            
+        }
     }
 }
 
 // MARK: - 关于点击区域的判断
 extension OperateKeysView {
-    /// 判断点击了哪些key
-    func judgeTouchMusicKeys(_ touchPoint: CGPoint) -> [BaseMusicKey] {
-        var resultArray: [BaseMusicKey] = []
+    /// 判断点击了哪个key
+    private func judgeTouchMusicKey(_ touchPoint: CGPoint) -> BaseMusicKey? {
+        
+        var tmpMusicKeyArray: [BaseMusicKey] = []
         
         for musicKey in self.musicKeyArray {
             if musicKey.frame.contains(touchPoint) {
-                resultArray.append(musicKey)
+                tmpMusicKeyArray.append(musicKey)
+                
             }
             
         }
         
-        return resultArray
+        if tmpMusicKeyArray.count != 0 {
+            return tmpMusicKeyArray.last!
+        }
+        
+        return nil
     }// funcEnd
     
-    /// 将点击的Key触发通知
-//    func triggerKeysArrayNotification(_ array: [BaseMusicKey]) -> Void {
-//        for key in array {
-//            key.pressStatus = .
-//        }
-//    }
+    
 }
 

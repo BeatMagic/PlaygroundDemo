@@ -9,6 +9,9 @@
 import UIKit
 
 class BaseMusicKey: UIView {
+    /// 主键
+    let mainKey: Int!
+    
     /// 边框颜色
     var borderColor: UIColor = UIColor.white {
         didSet {
@@ -29,22 +32,21 @@ class BaseMusicKey: UIView {
     var pressStatus: MusicKeyAttributesModel.KeyStatus = .Unpressed {
         didSet {
             
-            
             /// 发送通知
-            print("111")
+            print("\(self.mainKey!)号按钮\(pressStatus)")
         }
     }
-    
-
     
     
     
     init(frame: CGRect,
+         mainKey: Int,
          borderColor: UIColor,
          toneKey: MusicKeyAttributesModel.KeyToneAggregate,
          pitch: UInt8,
          kind: MusicKeyAttributesModel.KeyKinds) {
         
+        self.mainKey = mainKey
         self.borderColor = borderColor
         self.kind = kind
         self.toneKey = toneKey
@@ -52,6 +54,7 @@ class BaseMusicKey: UIView {
         
         super.init(frame: frame)
         
+        self.setData()
         self.setUI()
     }
     
@@ -73,6 +76,21 @@ extension BaseMusicKey {
         self.layer.cornerRadius = FrameStandard.KeyBorderWidthAggregate.normal.rawValue * 4
         
     }// funcEnd
+    
+    /// 设置数据
+    func setData() -> Void {
+        let name = Notification.Name(rawValue: EventQueueManager.MsgName)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.makeNoise),
+                                               name: name,
+                                               object: nil)
+        
+    }// funcEnd
+    
+    /// [通知]发出声音
+    @objc func makeNoise() -> Void {
+        
+    }
     
     
 }

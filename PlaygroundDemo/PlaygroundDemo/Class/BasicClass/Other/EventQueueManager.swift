@@ -29,7 +29,7 @@ class EventQueueManager: NSObject {
 }
 
 
-extension EventQueueManager : BeatTimerDelegate{
+extension EventQueueManager: BeatTimerDelegate{
      func doThingsWhenTiming(){
         
         EventQueueManager.count += 1
