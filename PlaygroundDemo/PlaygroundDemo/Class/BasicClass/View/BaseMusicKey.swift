@@ -15,30 +15,40 @@ class BaseMusicKey: UIView {
             self.layer.borderColor = self.borderColor.cgColor
         }
     }
+    
+    /// 种类
+    let kind: MusicKeyAttributesModel.KeyKinds!
 
     /// 音色唯一标识
-    let toneKey: MusicAttributesModel.KeyToneAggregate!
+    let toneKey: MusicKeyAttributesModel.KeyToneAggregate!
     
     /// 音高
     var pitch: UInt8!
     
     /// 按钮状态
-    var pressStatus: MusicAttributesModel.KeyStatus = .unpressed {
+    var pressStatus: MusicKeyAttributesModel.KeyStatus = .Unpressed {
         didSet {
+            
+            
             /// 发送通知
             print("111")
         }
     }
     
+
+    
+    
     
     init(frame: CGRect,
          borderColor: UIColor,
-         toneKey: MusicAttributesModel.KeyToneAggregate,
-         pitch: UInt8) {
+         toneKey: MusicKeyAttributesModel.KeyToneAggregate,
+         pitch: UInt8,
+         kind: MusicKeyAttributesModel.KeyKinds) {
         
+        self.borderColor = borderColor
+        self.kind = kind
         self.toneKey = toneKey
         self.pitch = pitch
-        self.borderColor = borderColor
         
         super.init(frame: frame)
         
@@ -63,4 +73,6 @@ extension BaseMusicKey {
         self.layer.cornerRadius = FrameStandard.KeyBorderWidthAggregate.normal.rawValue * 4
         
     }// funcEnd
+    
+    
 }
