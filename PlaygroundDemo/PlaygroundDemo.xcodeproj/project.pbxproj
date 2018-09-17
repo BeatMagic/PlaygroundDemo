@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		18824C36214F66510087CAA8 /* TimbreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18824C35214F66510087CAA8 /* TimbreManager.swift */; };
 		18824C38214F66B30087CAA8 /* Timbres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18824C37214F66B30087CAA8 /* Timbres.swift */; };
+		18824C3A214F6BB00087CAA8 /* EventQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18824C39214F6BB00087CAA8 /* EventQueue.swift */; };
 		18E070A3214CF05A00152D1A /* SoundEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18E070A2214CF05A00152D1A /* SoundEngine.swift */; };
 		6975700FD411D0B023CADBDB /* Pods_PlaygroundDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FA98C27E219E20BF105CB6 /* Pods_PlaygroundDemo.framework */; };
 		7C0ED140214BE2CB00410949 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0ED13F214BE2CB00410949 /* AppDelegate.swift */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		18824C35214F66510087CAA8 /* TimbreManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimbreManager.swift; sourceTree = SOURCE_ROOT; };
 		18824C37214F66B30087CAA8 /* Timbres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timbres.swift; sourceTree = "<group>"; };
+		18824C39214F6BB00087CAA8 /* EventQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventQueue.swift; path = PlaygroundDemo/Class/AppStandard/EventQueue.swift; sourceTree = SOURCE_ROOT; };
 		18E070A2214CF05A00152D1A /* SoundEngine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundEngine.swift; sourceTree = SOURCE_ROOT; };
 		40FA98C27E219E20BF105CB6 /* Pods_PlaygroundDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlaygroundDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62A2D62EBF958767ACAF444C /* Pods-PlaygroundDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaygroundDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlaygroundDemo/Pods-PlaygroundDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 			children = (
 				18E070A2214CF05A00152D1A /* SoundEngine.swift */,
 				18824C35214F66510087CAA8 /* TimbreManager.swift */,
+				18824C39214F6BB00087CAA8 /* EventQueue.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -345,6 +348,7 @@
 				7C0ED148214BE2CB00410949 /* PlaygroundDemo.xcdatamodeld in Sources */,
 				7C451B39214CEC6400E03F83 /* MusicAttributesModel.swift in Sources */,
 				7C0ED140214BE2CB00410949 /* AppDelegate.swift in Sources */,
+				18824C3A214F6BB00087CAA8 /* EventQueue.swift in Sources */,
 				18E070A3214CF05A00152D1A /* SoundEngine.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
