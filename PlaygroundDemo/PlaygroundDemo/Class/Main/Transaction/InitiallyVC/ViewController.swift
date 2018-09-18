@@ -11,6 +11,8 @@ import UIKit
 class ViewController: UIViewController {
     
     var keysView: OperateKeysView!
+    
+    var timbreMgr: TimbreManager!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +28,7 @@ class ViewController: UIViewController {
     }
     
     func setData() -> Void {
+        self.timbreMgr = TimbreManager()
         BeatTimer.delegate = self
         MusicAttributesModel.BeatsCountInOneMinute = 60
     }

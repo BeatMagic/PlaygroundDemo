@@ -112,7 +112,8 @@ extension BaseMusicKey {
             for evt in EventQueueManager.currentEvent!{
                 if evt.keyId==self.mainKey{
                     print("lalala"+String(self.mainKey))
-                    
+                    let mySampler = TimbreManager.getSampler(timbre: self.toneKey)
+                    try! mySampler.play(noteNumber: self.pitch, velocity: 95, channel: 1)
                 }
             }
 
@@ -121,6 +122,7 @@ extension BaseMusicKey {
     }
     
     func stopNoise() -> Void {
-        
+        let mySampler = TimbreManager.getSampler(timbre: self.toneKey)
+        try! mySampler.stop(noteNumber: self.pitch, channel: 1)
     }
 }

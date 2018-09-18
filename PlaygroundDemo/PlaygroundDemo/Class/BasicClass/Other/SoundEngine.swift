@@ -12,8 +12,10 @@ import AudioKit
 class SoundEngine: NSObject {
     
     var mixer  = AKMixer()
+    //这里key是音色的枚举， 对应一个midiSampler
     var timbreDict = [Int:AKMIDISampler]()
     
+    //这里设置总的混响，延音等
     
     override init(){
         

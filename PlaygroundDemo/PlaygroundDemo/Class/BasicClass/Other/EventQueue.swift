@@ -30,6 +30,10 @@ class EventQueue: NSObject {
         for kte in self.eventSeq{
             if kte.keyId != evtId {
                 temp.append(kte)
+            }else {
+                if kte.inqueueId == lastInqueueId{
+                    lastInqueueId = nil
+                }
             }
         }
         eventSeq = temp
