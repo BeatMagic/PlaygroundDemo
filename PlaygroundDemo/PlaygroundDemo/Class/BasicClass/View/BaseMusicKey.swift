@@ -31,7 +31,11 @@ class BaseMusicKey: UIView {
     /// 按钮状态
     var pressStatus: MusicKeyAttributesModel.KeyStatus = .Unpressed {
         didSet {
-
+            
+            if pressStatus == .Pressed {
+                self.shake()
+            }
+            
             // TODO: 发送通知
 //            print("\(self.mainKey!)号按钮\(pressStatus)")
         }
