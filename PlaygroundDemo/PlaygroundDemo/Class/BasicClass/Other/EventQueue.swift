@@ -25,6 +25,16 @@ class EventQueue: NSObject {
         
     }
     
+    func RemoveEvent(evtId:Int){
+        var temp = [KeyTouchEvent]()
+        for kte in self.eventSeq{
+            if kte.keyId != evtId {
+                temp.append(kte)
+            }
+        }
+        eventSeq = temp
+    }
+    
     func IsEmpty()->Bool{
         
         return eventSeq.count==0

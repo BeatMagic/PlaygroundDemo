@@ -46,8 +46,8 @@ class ViewController: UIViewController {
 
 extension ViewController: BeatTimerDelegate {
     func doThingsWhenTiming() {
-        EventQueueManager.count += 1
-        EventQueueManager.lastCountTime = Date().timeIntervalSince1970
+        EventQueueManager.doEveryBeat()
+        
         print(BeatTimer.getCurrentBeatTime())
     }
     

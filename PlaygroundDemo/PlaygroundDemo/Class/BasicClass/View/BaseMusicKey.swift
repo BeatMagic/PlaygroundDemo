@@ -31,13 +31,23 @@ class BaseMusicKey: UIView {
     /// 按钮状态
     var pressStatus: MusicKeyAttributesModel.KeyStatus = .Unpressed {
         didSet {
-            
+            var eventType = KeyTouchEvent.TouchEventType.Exit
             if pressStatus == .Pressed {
                 self.shake()
+                
+                eventType = KeyTouchEvent.TouchEventType.Enter
+            }else{
+                
+                //抬起事件除了要添加事件处理，还要自己在内部处理停止发声逻辑
+                self.stopNoise()
             }
             
             // TODO: 发送通知
 //            print("\(self.mainKey!)号按钮\(pressStatus)")
+            let ktevent = KeyTouchEvent(id:mainKey,ctime:Date().timeIntervalSince1970,type:eventType)
+            EventQueueManager.AddEvent(groupId: mainKey, event: ktevent)
+          
+            
         }
     }
     
@@ -97,6 +107,20 @@ extension BaseMusicKey {
     
     /// [通知调用]发出声音
     @objc func makeNoise() -> Void {
-      // TODO: 发出声音
+        
+        if EventQueueManager.currentEvent != nil {
+            for evt in EventQueueManager.currentEvent!{
+                if evt.keyId==self.mainKey{
+                    print("lalala"+String(self.mainKey))
+                    
+                }
+            }
+
+        }
+              // TODO: 发出声音
+    }
+    
+    func stopNoise() -> Void {
+        
     }
 }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		18824C38214F66B30087CAA8 /* Timbres.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18824C37214F66B30087CAA8 /* Timbres.swift */; };
 		18824C44214FAB7E0087CAA8 /* BeatTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18824C43214FAB7E0087CAA8 /* BeatTimer.swift */; };
+		18824C46214FF2990087CAA8 /* BaseMovableMusicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18824C45214FF2960087CAA8 /* BaseMovableMusicKey.swift */; };
 		6975700FD411D0B023CADBDB /* Pods_PlaygroundDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40FA98C27E219E20BF105CB6 /* Pods_PlaygroundDemo.framework */; };
 		7C0ED140214BE2CB00410949 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0ED13F214BE2CB00410949 /* AppDelegate.swift */; };
 		7C0ED142214BE2CB00410949 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C0ED141214BE2CB00410949 /* ViewController.swift */; };
@@ -29,12 +30,12 @@
 		7CE4872B214FA03800205EB0 /* TimbreManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE48729214FA03800205EB0 /* TimbreManager.swift */; };
 		7CE4872C214FA03800205EB0 /* SoundEngine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE4872A214FA03800205EB0 /* SoundEngine.swift */; };
 		7CE4872E214FA05300205EB0 /* KeyTouchEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE4872D214FA05300205EB0 /* KeyTouchEvent.swift */; };
-		7CE48730214FCC4100205EB0 /* BaseMovableMusicKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE4872F214FCC4100205EB0 /* BaseMovableMusicKey.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		18824C37214F66B30087CAA8 /* Timbres.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timbres.swift; sourceTree = "<group>"; };
 		18824C43214FAB7E0087CAA8 /* BeatTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeatTimer.swift; sourceTree = "<group>"; };
+		18824C45214FF2960087CAA8 /* BaseMovableMusicKey.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseMovableMusicKey.swift; sourceTree = "<group>"; };
 		40FA98C27E219E20BF105CB6 /* Pods_PlaygroundDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PlaygroundDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		62A2D62EBF958767ACAF444C /* Pods-PlaygroundDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaygroundDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-PlaygroundDemo/Pods-PlaygroundDemo.release.xcconfig"; sourceTree = "<group>"; };
 		7C0ED13C214BE2CB00410949 /* PlaygroundDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PlaygroundDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,7 +59,6 @@
 		7CE48729214FA03800205EB0 /* TimbreManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimbreManager.swift; sourceTree = "<group>"; };
 		7CE4872A214FA03800205EB0 /* SoundEngine.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundEngine.swift; sourceTree = "<group>"; };
 		7CE4872D214FA05300205EB0 /* KeyTouchEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyTouchEvent.swift; sourceTree = "<group>"; };
-		7CE4872F214FCC4100205EB0 /* BaseMovableMusicKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMovableMusicKey.swift; sourceTree = "<group>"; };
 		D7F9A49EC72610B7391A6D5A /* Pods-PlaygroundDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PlaygroundDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PlaygroundDemo/Pods-PlaygroundDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -216,8 +216,8 @@
 		7C297FDA214CD31600FF619A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				18824C45214FF2960087CAA8 /* BaseMovableMusicKey.swift */,
 				7C451B36214CEA8800E03F83 /* BaseMusicKey.swift */,
-				7CE4872F214FCC4100205EB0 /* BaseMovableMusicKey.swift */,
 				7C451B3C214CF94400E03F83 /* OperateKeysView.swift */,
 			);
 			path = View;
@@ -247,7 +247,6 @@
 				7C0ED139214BE2CB00410949 /* Frameworks */,
 				7C0ED13A214BE2CB00410949 /* Resources */,
 				44C60A1F28C37C2BE1526FA8 /* [CP] Embed Pods Frameworks */,
-				7CE48731214FD9EA00205EB0 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -345,19 +344,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PlaygroundDemo/Pods-PlaygroundDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7CE48731214FD9EA00205EB0 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "TAGS=\"TODO:|FIXME:\"\necho \"searching ${SRCROOT} for ${TAGS}\"\nfind \"${SRCROOT}\" \\( -name \"*.swift\" \\) -print0 | xargs -0 egrep --with-filename --line-number --only-matching \"($TAGS).*\\$\" | perl -p -e \"s/($TAGS)/ warning: \\$1/\"";
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -368,8 +354,8 @@
 				7CE48722214F871800205EB0 /* MusicKeyAttributesModel.swift in Sources */,
 				18824C44214FAB7E0087CAA8 /* BeatTimer.swift in Sources */,
 				7C451B35214CEA1600E03F83 /* ToolClass.swift in Sources */,
+				18824C46214FF2990087CAA8 /* BaseMovableMusicKey.swift in Sources */,
 				7C451B3D214CF94400E03F83 /* OperateKeysView.swift in Sources */,
-				7CE48730214FCC4100205EB0 /* BaseMovableMusicKey.swift in Sources */,
 				7C451B37214CEA8800E03F83 /* BaseMusicKey.swift in Sources */,
 				7CE48727214F9FF300205EB0 /* EventQueue.swift in Sources */,
 				7CE48728214F9FF300205EB0 /* EventQueueManager.swift in Sources */,
