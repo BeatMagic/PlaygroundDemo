@@ -24,10 +24,10 @@ class EventQueueManager: NSObject {
         //先处理抬起的事件
         if event.type == KeyTouchEvent.TouchEventType.Exit{
             //收到抬起时看看有没有这个键的按下事件还在队列中，首先移除掉
-            if self.groupQueueDict.keys.contains(groupId){
-                let cque = self.groupQueueDict[groupId]
-                cque?.RemoveEvent(evtId: event.keyId)
-            }
+//            if self.groupQueueDict.keys.contains(groupId){
+//                let cque = self.groupQueueDict[groupId]
+//                cque?.RemoveEvent(evtId: event.keyId)
+//            }
             
         }else if event.type == KeyTouchEvent.TouchEventType.Enter{
             //确保某个beat只有一个事件

@@ -13,7 +13,7 @@ class MusicAttributesModel: UIView {
     /// 一分钟的拍子数
     static var BeatsCountInOneMinute: Double = 60 {
         didSet {
-            let sectionTime = BeatsCountInOneMinute / 60 * 4
+            let sectionTime = 4/(BeatsCountInOneMinute / 60)
             let everyBeatTime = sectionTime / 16
 
             BeatTimer.setBeatTimer(everyBeatTime: everyBeatTime, sectionTime: sectionTime)

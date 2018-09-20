@@ -39,7 +39,7 @@ class BaseMusicKey: UIView {
             }else{
                 
                 //抬起事件除了要添加事件处理，还要自己在内部处理停止发声逻辑
-                self.stopNoise()
+                //self.stopNoise()
             }
             
             // TODO: 发送通知

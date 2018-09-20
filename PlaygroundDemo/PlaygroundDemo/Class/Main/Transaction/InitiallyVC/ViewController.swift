@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     func setData() -> Void {
         self.timbreMgr = TimbreManager()
         BeatTimer.delegate = self
-        MusicAttributesModel.BeatsCountInOneMinute = 60
+        MusicAttributesModel.BeatsCountInOneMinute = 90
     }
     
     func setUI() -> Void {

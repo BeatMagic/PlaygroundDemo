@@ -17,7 +17,7 @@ class EventQueue: NSObject {
     func AddEvent(event:KeyTouchEvent)
     {
         //保留最后一个其余丢弃
-        if event.inqueueId == lastInqueueId{
+        if event.inqueueId == lastInqueueId && !self.IsEmpty(){
              eventSeq.removeLast()
         }
         eventSeq.append(event)
