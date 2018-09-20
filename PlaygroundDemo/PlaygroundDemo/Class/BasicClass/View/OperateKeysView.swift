@@ -154,7 +154,7 @@ extension OperateKeysView {
                     mainKey: viewModelIndex,
                     borderColor: .white,
                     toneKey: MusicKeyAttributesModel.keyToneIndexArray[viewModelIndex],
-                    pitch: MusicMessageProcessing.getMidiNoteFromString(pitchName),
+                    pitch: MusicMessageProcessing.getMidiNoteFromString(pitchName) - 12,
                     kind: viewModel.ownKind
                 )
                 
@@ -164,7 +164,7 @@ extension OperateKeysView {
                     mainKey: viewModelIndex,
                     borderColor: .white,
                     toneKey: MusicKeyAttributesModel.keyToneIndexArray[viewModelIndex],
-                    pitch: MusicMessageProcessing.getMidiNoteFromString(pitchName),
+                    pitch: MusicMessageProcessing.getMidiNoteFromString(pitchName) - 12,
                     kind: viewModel.ownKind
                 )
                 

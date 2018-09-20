@@ -55,6 +55,7 @@ class MusicAttributesModel: NSObject {
         ],
         ["shake_E2.wav"],
         ["snare_F2.wav"],
+
     ]
 
 }

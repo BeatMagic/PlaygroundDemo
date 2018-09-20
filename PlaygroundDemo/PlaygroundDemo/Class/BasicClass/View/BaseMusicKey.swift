@@ -39,7 +39,9 @@ class BaseMusicKey: UIView {
             }else{
                 
                 //抬起事件除了要添加事件处理，还要自己在内部处理停止发声逻辑
-                //self.stopNoise()
+                if self.kind == .Movable {
+                    self.stopNoise()
+                }
             }
             
 //            print("\(self.mainKey!)号按钮\(pressStatus)")
@@ -112,9 +114,7 @@ extension BaseMusicKey {
                 if evt.keyId==self.mainKey{
                     print("lalala"+String(self.pitch))
                     let mySampler = TimbreManager.getSampler(timbre: self.toneKey)
-                    for index in 0..<100 {
-                        try! mySampler.play(noteNumber: UInt8(index), velocity: 95, channel: 1)
-                    }
+                    try! mySampler.play(noteNumber: self.pitch, velocity: 95, channel: 1)
                 }
             }
 
