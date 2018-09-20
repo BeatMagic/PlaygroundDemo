@@ -112,7 +112,9 @@ extension BaseMusicKey {
                 if evt.keyId==self.mainKey{
                     print("lalala"+String(self.pitch))
                     let mySampler = TimbreManager.getSampler(timbre: self.toneKey)
-                    try! mySampler.play(noteNumber: self.pitch, velocity: 95, channel: 1)
+                    for index in 0..<100 {
+                        try! mySampler.play(noteNumber: UInt8(index), velocity: 95, channel: 1)
+                    }
                 }
             }
 

@@ -36,7 +36,6 @@
 		7CAB6BE82153E94B0048CF9F /* pad_D1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CAB6BDD2153E94B0048CF9F /* pad_D1.wav */; };
 		7CAB6BE92153E94B0048CF9F /* pluck3_G1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CAB6BDE2153E94B0048CF9F /* pluck3_G1.wav */; };
 		7CAB6BEA2153E94B0048CF9F /* Kick+HH_C1.wav in Resources */ = {isa = PBXBuildFile; fileRef = 7CAB6BDF2153E94B0048CF9F /* Kick+HH_C1.wav */; };
-		7CAB6BF02153F3EC0048CF9F /* GeneralUserPiano.sf2 in Resources */ = {isa = PBXBuildFile; fileRef = 7CAB6BEF2153F3EC0048CF9F /* GeneralUserPiano.sf2 */; };
 		7CE48722214F871800205EB0 /* MusicKeyAttributesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE48721214F871800205EB0 /* MusicKeyAttributesModel.swift */; };
 		7CE48727214F9FF300205EB0 /* EventQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE48725214F9FF300205EB0 /* EventQueue.swift */; };
 		7CE48728214F9FF300205EB0 /* EventQueueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE48726214F9FF300205EB0 /* EventQueueManager.swift */; };
@@ -78,7 +77,6 @@
 		7CAB6BDD2153E94B0048CF9F /* pad_D1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pad_D1.wav; sourceTree = "<group>"; };
 		7CAB6BDE2153E94B0048CF9F /* pluck3_G1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = pluck3_G1.wav; sourceTree = "<group>"; };
 		7CAB6BDF2153E94B0048CF9F /* Kick+HH_C1.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Kick+HH_C1.wav"; sourceTree = "<group>"; };
-		7CAB6BEF2153F3EC0048CF9F /* GeneralUserPiano.sf2 */ = {isa = PBXFileReference; lastKnownFileType = file; path = GeneralUserPiano.sf2; sourceTree = "<group>"; };
 		7CE48721214F871800205EB0 /* MusicKeyAttributesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicKeyAttributesModel.swift; sourceTree = "<group>"; };
 		7CE48725214F9FF300205EB0 /* EventQueue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventQueue.swift; sourceTree = "<group>"; };
 		7CE48726214F9FF300205EB0 /* EventQueueManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventQueueManager.swift; sourceTree = "<group>"; };
@@ -266,7 +264,6 @@
 			isa = PBXGroup;
 			children = (
 				7C0ED149214BE2CC00410949 /* Assets.xcassets */,
-				7CAB6BEF2153F3EC0048CF9F /* GeneralUserPiano.sf2 */,
 				7CAB6BD42153E94B0048CF9F /* ToneFiles */,
 			);
 			name = Resource;
@@ -353,7 +350,6 @@
 				7CAB6BE42153E94B0048CF9F /* pluck2_F1.wav in Resources */,
 				7C0ED14D214BE2CC00410949 /* LaunchScreen.storyboard in Resources */,
 				7CAB6BE12153E94B0048CF9F /* pluck5_B1.wav in Resources */,
-				7CAB6BF02153F3EC0048CF9F /* GeneralUserPiano.sf2 in Resources */,
 				7CAB6BE92153E94B0048CF9F /* pluck3_G1.wav in Resources */,
 				7C0ED14A214BE2CC00410949 /* Assets.xcassets in Resources */,
 				7CAB6BE52153E94B0048CF9F /* clap_D2.wav in Resources */,

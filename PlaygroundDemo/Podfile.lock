@@ -16,7 +16,7 @@ DEPENDENCIES:
   - SnapKit (~> 4.0.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - AudioKit
     - HGRippleRadarView
     - SnapKit
@@ -38,4 +38,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 52f081dc8633edd3c632cb4084c0977dafe1eeaa
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.3

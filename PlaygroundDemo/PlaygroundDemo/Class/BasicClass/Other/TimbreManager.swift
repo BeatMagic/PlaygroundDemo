@@ -32,11 +32,11 @@ class TimbreManager: NSObject {
                 let tmpSampler = AKMIDISampler()
                 
                 // TODO: BUG
-//                let audioFileArray = self.getAKAudioFileArrayFrom(index)
-//
-//                try! tmpSampler.loadAudioFiles(audioFileArray)
+                let audioFileArray = self.getAKAudioFileArrayFrom(index)
+
+                try! tmpSampler.loadAudioFiles(audioFileArray)
                 
-                try! tmpSampler.loadMelodicSoundFont("GeneralUserPiano", preset: 0)
+                //try! tmpSampler.loadMelodicSoundFont("GeneralUserPiano", preset: 0)
                 return tmpSampler
             }()
             
