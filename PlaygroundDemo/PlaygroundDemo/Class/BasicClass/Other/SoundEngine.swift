@@ -22,6 +22,7 @@ class SoundEngine: NSObject {
         AudioKit.output = mixer
         do {
             try AudioKit.start()
+            
         } catch {
             AKLog("AudioKit did not start!")
         }

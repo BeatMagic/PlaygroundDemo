@@ -140,21 +140,21 @@ extension OperateKeysView {
         self.backgroundColor = UIColor.black
         self.isMultipleTouchEnabled = true
         
-        var maxPitch: UInt8 = 65
         var viewModelIndex = 0
-        
         
         for viewModel in self.musicKeyViewModelArray {
             
-            var musicKey:BaseMusicKey
+            
+            var musicKey: BaseMusicKey
+            let pitchName = MusicKeyAttributesModel.keyTonePitchIndexArray[viewModelIndex]
             
             if viewModel.ownKind == .Movable {
                 musicKey = BaseMovableMusicKey.init(
                     frame: viewModel.ownFrame,
                     mainKey: viewModelIndex,
                     borderColor: .white,
-                    toneKey: .Piano,
-                    pitch: maxPitch,
+                    toneKey: MusicKeyAttributesModel.keyToneIndexArray[viewModelIndex],
+                    pitch: MusicMessageProcessing.getMidiNoteFromString(pitchName),
                     kind: viewModel.ownKind
                 )
                 
@@ -163,16 +163,13 @@ extension OperateKeysView {
                     frame: viewModel.ownFrame,
                     mainKey: viewModelIndex,
                     borderColor: .white,
-                    toneKey: .Piano,
-                    pitch: maxPitch,
+                    toneKey: MusicKeyAttributesModel.keyToneIndexArray[viewModelIndex],
+                    pitch: MusicMessageProcessing.getMidiNoteFromString(pitchName),
                     kind: viewModel.ownKind
                 )
                 
             }
-            
-            
 
-            
             switch viewModel.ownKind {
             case .Movable:
                 musicKey.borderColor = UIColor.clear
@@ -181,7 +178,7 @@ extension OperateKeysView {
                 panGesture.cancelsTouchesInView = false
                 musicKey.addGestureRecognizer(panGesture)
                 
-
+                
             case .BorderVariable:
                 musicKey.borderColor = UIColor.flatOrange
                 
@@ -192,7 +189,6 @@ extension OperateKeysView {
             self.addSubview(musicKey)
             self.musicKeyArray.append(musicKey)
             
-            maxPitch -= 1
             viewModelIndex += 1
         }
         
@@ -234,6 +230,12 @@ extension OperateKeysView {
             // 如果点到按钮就触发通知
             if pressedKey != nil {
                 pressedKey!.pressStatus = .Pressed
+                
+                // 判断点击是否为上层按钮
+                if let lowerLevelKeyIndex = self.judgeKeyIsHigherLevelKey(pressedKey!.mainKey) {
+                    self.musicKeyArray[lowerLevelKeyIndex].pressStatus = .Pressed
+                    
+                }
             }
             
             
@@ -253,13 +255,28 @@ extension OperateKeysView {
             // 本次点击的按钮不为空
             if pressedKey != nil {
                 
+                // 判断点击是否为上层按钮
+                if let lowerLevelKeyIndex = self.judgeKeyIsHigherLevelKey(pressedKey!.mainKey) {
+                    self.musicKeyArray[lowerLevelKeyIndex].pressStatus = .Pressed
+                    
+                }
+                
+                
                 // 上次点击的按钮不为空
                 if previousPressedKey != nil {
-                    
+
                     // 两次点击的按钮不一致
                     if pressedKey!.mainKey != previousPressedKey!.mainKey {
-                        pressedKey!.pressStatus = .Pressed
+                        
                         previousPressedKey!.pressStatus = .Unpressed
+                        
+                        
+                        // 判断是否从上层Key滑动到下层Key
+                        if self.judgeKeyIsMoved(fromHigherLevelKey: previousPressedKey!, toLowerLevelKey: pressedKey!) == false {
+                            
+                            pressedKey!.pressStatus = .Pressed
+                        }
+                        
                     }
                     
                 }else {
@@ -294,6 +311,7 @@ extension OperateKeysView {
             self.lastTouchKeyDict.removeValue(forKey: touchAddress)
 
         }
+
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -333,66 +351,35 @@ extension OperateKeysView {
         return nil
     }// funcEnd
     
+    /// 判断是否从上层Key滑动到下层Key [上层Key, 下层Key] -> Bool
+    func judgeKeyIsMoved(fromHigherLevelKey: BaseMusicKey, toLowerLevelKey: BaseMusicKey) -> Bool {
+        if let higherLevelKeyIndexArray = MusicKeyAttributesModel.StackKeysDict[toLowerLevelKey.mainKey] {
+            
+            if higherLevelKeyIndexArray.contains(fromHigherLevelKey.mainKey) {
+                return true
+            }
+            
+        }
+        
+        return false
+    }// funcEnd
+    
+    /// 用Index判断是否为上层按钮 如果是上层按钮 返回其底层按钮Index
+    func judgeKeyIsHigherLevelKey(_ keyIndex: Int) -> Int? {
+        for lowerLevelKeyIndex in MusicKeyAttributesModel.StackKeysDict.keys {
+            let higherLevelKeyIndexArray = MusicKeyAttributesModel.StackKeysDict[lowerLevelKeyIndex]!
+            
+            if higherLevelKeyIndexArray.contains(keyIndex) == true {
+                
+                return lowerLevelKeyIndex
+            }
+            
+            
+        }
+        
+        return nil
+        
+    }// funcEnd
     
 }
 
-
-/*
-import UIKit
-
-class ViewController: UIViewController {
-    //拖动的view
-    @IBOutlet weak var myView: UIView!
-    //拖动view的上约束
-    @IBOutlet weak var myViewTopLayoutConstraint: NSLayoutConstraint!
-    //拖动手势
-    @IBOutlet var panGesture: UIPanGestureRecognizer!
- 
-    //保存初始时拖动view上约束的值
-    var myViewTopLayoutConstant: CGFloat!
-    //保存初始时拖动view的y坐标值
-    var myViewOriginY: CGFloat!
- 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //添加拖动手势响应
-        panGesture.addTarget(self, action: #selector(ViewController.pan))
-        //保存初始时拖动view上约束的值（用于后面还原）
-        myViewTopLayoutConstant = myViewTopLayoutConstraint.constant
-    }
- 
-    //拖动手势
-    func pan() {
-        //拖动开始
-        if panGesture.state == .began {
-            myViewOriginY = myView.frame.origin.y
-        }
- 
-            //拖动过程
-        else if panGesture.state == .changed {
-            let y = panGesture.translation(in: self.view).y
-            myViewTopLayoutConstraint.constant = myViewTopLayoutConstant + y
-        }
- 
-            //拖动结束
-        else if panGesture.state == .ended {
-            //回弹
-            UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseInOut, animations: {
-                () -> Void in
-                self.myView.frame.origin.y = self.myViewOriginY
-            }, completion: { (success) -> Void in
-                if success {
-                    //回弹动画结束后恢复默认约束值
-                    self.myViewTopLayoutConstraint.constant = self.myViewTopLayoutConstant
-                }
-            })
-            return
-        }
-    }
- 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-}
-
- */

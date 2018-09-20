@@ -51,7 +51,7 @@ extension ViewController: BeatTimerDelegate {
     func doThingsWhenTiming() {
         EventQueueManager.doEveryBeat()
         
-        print(BeatTimer.getCurrentBeatTime())
+//        print(BeatTimer.getCurrentBeatTime())
     }
     
 }

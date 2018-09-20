@@ -13,14 +13,10 @@ class TimbreManager: NSObject {
     
     static var soundEngine = SoundEngine()
     
- 
     override init(){
         super.init()
         
-        
-        self.initTimbre_0()
-        
-        
+        self.initAllTimbre()
     }
     
     static func getSampler(timbre: MusicKeyAttributesModel.KeyToneAggregate) ->AKMIDISampler{
@@ -28,36 +24,41 @@ class TimbreManager: NSObject {
         return self.soundEngine.GetSampler(timbre: timbre.rawValue)
     }
     
-    //每种音色自己写个初始化函数
-
-    func initTimbre_0(){
-        let painoSampler: AKMIDISampler = {
-            let tmpSampler = AKMIDISampler()
-            
-            try! tmpSampler.loadMelodicSoundFont("GeneralUserPiano", preset: 0)
-            
-            return tmpSampler
-        }()
+    /// 初始化所有音色
+    private func initAllTimbre() -> Void {
         
-        TimbreManager.soundEngine.RegistTimbre(timbre: MusicKeyAttributesModel.KeyToneAggregate.Piano.rawValue, sampler: painoSampler)
-    }
+        for index in 0 ..< MusicAttributesModel.toneWithFileArray.count {
+            let sampler: AKMIDISampler = {
+                let tmpSampler = AKMIDISampler()
+                
+                // TODO: BUG
+//                let audioFileArray = self.getAKAudioFileArrayFrom(index)
+//
+//                try! tmpSampler.loadAudioFiles(audioFileArray)
+                
+                try! tmpSampler.loadMelodicSoundFont("GeneralUserPiano", preset: 0)
+                return tmpSampler
+            }()
+            
+            TimbreManager.soundEngine.RegistTimbre(timbre: index, sampler: sampler)
+        }
+        
+    }// funcEnd
     
-    func initTimbre_3(){
-        let drumSampler: AKMIDISampler = {
-            let tmpSampler = AKMIDISampler()
-            
-            let bassDrumFile = try! AKAudioFile(readFileName: "bass_drum_C1.wav")
-            let clapFile = try! AKAudioFile(readFileName: "snare_D1.wav")
-            let closedHiHatFile = try! AKAudioFile(readFileName: "closed_hi_hat_F#1.wav")
-            
-            try! tmpSampler.loadAudioFiles([
-                bassDrumFile, clapFile, closedHiHatFile
-                ])
-            
-            return tmpSampler
-        }()
+}
+
+extension TimbreManager {
+    /// 通过toneWithFileArray的Index 返回一个AKAudioFile数组
+    func getAKAudioFileArrayFrom(_ arrayIndex: Int) -> [AKAudioFile] {
+        let fileNameArray = MusicAttributesModel.toneWithFileArray[arrayIndex]
+        var audioFileArray: [AKAudioFile] = []
         
-        TimbreManager.soundEngine.RegistTimbre(timbre: MusicKeyAttributesModel.KeyToneAggregate.Drum.rawValue, sampler: drumSampler)
-    }
+        for fileName in fileNameArray {
+            audioFileArray.append(try! AKAudioFile(readFileName: fileName))
+        }
+        
+        return audioFileArray
+        
+    }// funcEnd
 }
 

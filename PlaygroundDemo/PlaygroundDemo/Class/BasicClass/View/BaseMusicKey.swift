@@ -42,7 +42,6 @@ class BaseMusicKey: UIView {
                 //self.stopNoise()
             }
             
-            // TODO: 发送通知
 //            print("\(self.mainKey!)号按钮\(pressStatus)")
             let ktevent = KeyTouchEvent(id:mainKey,ctime:Date().timeIntervalSince1970,type:eventType)
             EventQueueManager.AddEvent(groupId: mainKey, event: ktevent)
@@ -111,14 +110,13 @@ extension BaseMusicKey {
         if EventQueueManager.currentEvent != nil {
             for evt in EventQueueManager.currentEvent!{
                 if evt.keyId==self.mainKey{
-                    print("lalala"+String(self.mainKey))
+                    print("lalala"+String(self.pitch))
                     let mySampler = TimbreManager.getSampler(timbre: self.toneKey)
                     try! mySampler.play(noteNumber: self.pitch, velocity: 95, channel: 1)
                 }
             }
 
         }
-              // TODO: 发出声音
     }
     
     func stopNoise() -> Void {
