@@ -391,7 +391,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-PlaygroundDemo/Pods-PlaygroundDemo-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-PlaygroundDemo/Pods-PlaygroundDemo-frameworks.sh",
 				"${PODS_ROOT}/AudioKit/iOS/AudioKitUI.framework",
 				"${BUILT_PRODUCTS_DIR}/ChameleonFramework/ChameleonFramework.framework",
 				"${BUILT_PRODUCTS_DIR}/HGRippleRadarView/HGRippleRadarView.framework",
@@ -406,7 +406,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PlaygroundDemo/Pods-PlaygroundDemo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PlaygroundDemo/Pods-PlaygroundDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

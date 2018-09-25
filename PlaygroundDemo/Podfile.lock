@@ -8,10 +8,10 @@ PODS:
   - ChameleonFramework/Swift (2.1.0):
     - ChameleonFramework/Default
   - HGRippleRadarView (0.1.2)
-  - SnapKit (4.0.0)
+  - SnapKit (4.0.1)
 
 DEPENDENCIES:
-  - AudioKit (~> 4.4)
+  - AudioKit (~> 4.0)
   - AudioKit/UI
   - ChameleonFramework/Swift (from `https://github.com/ViccAlexander/Chameleon.git`)
   - HGRippleRadarView
@@ -36,8 +36,8 @@ SPEC CHECKSUMS:
   AudioKit: 79c2b23cd00beb656938aa0b81b614391f17eaa3
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   HGRippleRadarView: 5379e27634c09222ebc836671c7425ad7b257cc4
-  SnapKit: a42d492c16e80209130a3379f73596c3454b7694
+  SnapKit: 0de968a9fec17499afa29683b05d0c775b6d1c29
 
-PODFILE CHECKSUM: 9333f360a45f085a1602c7d58f9ab8931646786d
+PODFILE CHECKSUM: 52f081dc8633edd3c632cb4084c0977dafe1eeaa
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.1

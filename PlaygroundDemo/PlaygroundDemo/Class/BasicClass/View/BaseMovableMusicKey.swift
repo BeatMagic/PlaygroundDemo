@@ -12,14 +12,13 @@ class BaseMovableMusicKey: BaseMusicKey {
     
     var ownCenter = CGPoint.zero
     
-    override init(frame: CGRect, mainKey: Int, borderColor: UIColor, toneKey: MusicKeyAttributesModel.KeyToneAggregate, pitch: UInt8, kind: MusicKeyAttributesModel.KeyKinds) {
+    override init(frame: CGRect, mainKey: Int, borderColor: UIColor, tomeModelArray: [ToneItemModel], kind: MusicKeyAttributesModel.KeyKinds) {
         
         super.init(frame: frame,
                    mainKey: mainKey,
                    borderColor: borderColor,
-                   toneKey: toneKey,
-                   pitch: pitch,
-                   kind: kind)
+                   tomeModelArray: tomeModelArray,
+                   kind: .Movable)
     }
     
     required init?(coder aDecoder: NSCoder) {

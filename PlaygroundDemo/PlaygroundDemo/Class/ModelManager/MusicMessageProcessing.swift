@@ -51,7 +51,7 @@ class MusicMessageProcessing: NSObject {
         
     }// funcEnd
     
-    /// 扩展: 通过一个字符串获取midi音符数字
+    /// 通过一个音符字符串获取midi音符数字 "C4"
     static func getMidiNoteFromString(_ noteString: String) -> UInt8 {
         let scale = ToolClass.cutStringWithPlaces(
             noteString, startPlace: 0, endPlace: 1
@@ -74,4 +74,21 @@ class MusicMessageProcessing: NSObject {
         return self.getMidiNote(scale, octaveCount: Int(octaveCountString)!, isRising: isRising)
         
     }
+    
+    /// 通过一个音色文件名获取midi音符数字
+    static func getMidiNoteFromFileName(_ toneFileName: String) -> UInt8 {
+        
+        let toneFileNoSuffixName = ToolClass.cutStringWithPlaces(toneFileName, startPlace: 0, endPlace: toneFileName.count - 4)
+        
+        
+        if let range = toneFileName.range(of: "_") {
+            // 获取音符字符串
+            let noteString = ToolClass.cutStringWithPlaces(toneFileNoSuffixName, startPlace: range.upperBound.encodedOffset, endPlace: toneFileNoSuffixName.count)
+            
+            return self.getMidiNoteFromString(noteString) - 12
+        }
+        
+        return 0
+        
+    }// funcEnd
 }

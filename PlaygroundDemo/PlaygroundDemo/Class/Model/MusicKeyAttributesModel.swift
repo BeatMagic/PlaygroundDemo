@@ -40,37 +40,21 @@ class MusicKeyAttributesModel: NSObject {
         8: [9],
         ]
     
-    /// 按键音色索引数组
-    static let keyToneIndexArray: [MusicKeyAttributesModel.KeyToneAggregate] = [
-        MusicKeyAttributesModel.KeyToneAggregate.kickHh,
-        MusicKeyAttributesModel.KeyToneAggregate.pad,
-        MusicKeyAttributesModel.KeyToneAggregate.pluck,
-        MusicKeyAttributesModel.KeyToneAggregate.pluck,
-        
-        MusicKeyAttributesModel.KeyToneAggregate.hh,
-        MusicKeyAttributesModel.KeyToneAggregate.pluck,
-        MusicKeyAttributesModel.KeyToneAggregate.clap,
-        MusicKeyAttributesModel.KeyToneAggregate.pluck,
-        
-        MusicKeyAttributesModel.KeyToneAggregate.snare,
-        MusicKeyAttributesModel.KeyToneAggregate.pluck,
-        MusicKeyAttributesModel.KeyToneAggregate.shake,
-        ]
+}
+
+class ToneItemModel: NSObject {
+    /// 音色文件名
+    let toneFileName: String!
     
-    /// 按键音高索引数组
-    static let keyTonePitchIndexArray: [String] = [
-        "C1",
-        "D1",
-        "E1",
-        "F1",
-        "C2",
-        "G1",
-        "D2",
-        "A1",
-        "F2",
-        "B1",
-        "E2",
-        ]
+    /// 音高
+    let pitch: UInt8!
+    
+    init(toneFileName: String) {
+        self.toneFileName = toneFileName
+        self.pitch = MusicMessageProcessing.getMidiNoteFromFileName(toneFileName)
+        
+        super.init()
+    }
     
 }
 

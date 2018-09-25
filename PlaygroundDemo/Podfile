@@ -11,7 +11,7 @@ target 'PlaygroundDemo' do
         pod 'HGRippleRadarView'                                         # 波浪动画
 
     # 音频处理
-        pod 'AudioKit', '~> 4.4'
+        pod 'AudioKit', '~> 4.0'
         pod 'AudioKit/UI'
 
 end

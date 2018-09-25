@@ -19,14 +19,23 @@ class BaseMusicKey: UIView {
         }
     }
     
-    /// 种类
+    /// 按键种类
     let kind: MusicKeyAttributesModel.KeyKinds!
 
-    /// 音色唯一标识
-    let toneKey: MusicKeyAttributesModel.KeyToneAggregate!
+    /// 音色模型数组
+    let tomeModelArray: [ToneItemModel]!
     
-    /// 音高
-    var pitch: UInt8!
+    /// 高播放优先级的音色模型数组
+    var highPriorityTomeModelArray: [ToneItemModel] = []
+    
+    /// 点按次数
+    var pressedCount: Int = 0
+    
+    /// 上次点按时间
+    var lastPressedTime: Double = 0
+    
+    /// 上次点按音符数字
+    var lastPressedNote: UInt8 = 0
     
     /// 按钮状态
     var pressStatus: MusicKeyAttributesModel.KeyStatus = .Unpressed {
@@ -34,17 +43,15 @@ class BaseMusicKey: UIView {
             var eventType = KeyTouchEvent.TouchEventType.Exit
             if pressStatus == .Pressed {
                 self.shake()
-                
                 eventType = KeyTouchEvent.TouchEventType.Enter
-            }else{
+                
+                
+            }else if pressStatus == .Unpressed && self.kind == MusicKeyAttributesModel.KeyKinds.Movable {
                 
                 //抬起事件除了要添加事件处理，还要自己在内部处理停止发声逻辑
-                if self.kind == .Movable {
-                    self.stopNoise()
-                }
+                self.stopNoise()
             }
             
-//            print("\(self.mainKey!)号按钮\(pressStatus)")
             let ktevent = KeyTouchEvent(id:mainKey,ctime:Date().timeIntervalSince1970,type:eventType)
             EventQueueManager.AddEvent(groupId: mainKey, event: ktevent)
           
@@ -53,22 +60,16 @@ class BaseMusicKey: UIView {
     }
     
     
-    /// 拖动的最后位置
-    var lastLocation = CGPoint(x: 0, y: 0)
-    
-    
     init(frame: CGRect,
          mainKey: Int,
          borderColor: UIColor,
-         toneKey: MusicKeyAttributesModel.KeyToneAggregate,
-         pitch: UInt8,
+         tomeModelArray: [ToneItemModel],
          kind: MusicKeyAttributesModel.KeyKinds) {
         
         self.mainKey = mainKey
         self.borderColor = borderColor
         self.kind = kind
-        self.toneKey = toneKey
-        self.pitch = pitch
+        self.tomeModelArray = tomeModelArray
         
         super.init(frame: frame)
         
@@ -111,10 +112,37 @@ extension BaseMusicKey {
         
         if EventQueueManager.currentEvent != nil {
             for evt in EventQueueManager.currentEvent!{
-                if evt.keyId==self.mainKey{
-                    print("lalala"+String(self.pitch))
-                    let mySampler = TimbreManager.getSampler(timbre: self.toneKey)
-                    try! mySampler.play(noteNumber: self.pitch, velocity: 95, channel: 1)
+                if evt.keyId == self.mainKey{
+                    
+                    var playToneModel: ToneItemModel
+                    let nowTimeInterval = Date().timeIntervalSince1970
+                    
+                    
+                    if self.highPriorityTomeModelArray.count == 0 {
+                        
+                        // 两次点击之间小于等于单位长度
+                        if (nowTimeInterval - self.lastPressedTime) / 1000 <= MusicAttributesModel.LocalEveryBeatTime {
+                            let tmpCount = Int.random(in: 0 ..< self.tomeModelArray.count)
+                            playToneModel = self.tomeModelArray[tmpCount]
+                            
+                            
+                        }else {
+                            playToneModel = self.tomeModelArray[self.pressedCount % self.tomeModelArray.count]
+                            self.pressedCount += 1
+                        }
+                        
+                    }else {
+                        playToneModel = self.highPriorityTomeModelArray.first!
+                        self.highPriorityTomeModelArray.remove(at: 0)
+                        
+                    }
+                
+                    self.lastPressedNote = playToneModel.pitch
+                    self.lastPressedTime = nowTimeInterval
+                    
+                    let mySampler = TimbreManager.getSampler(keyIndex: self.mainKey)
+                    try! mySampler.play(noteNumber: playToneModel.pitch, velocity: 95, channel: 1)
+                    
                 }
             }
 
@@ -122,7 +150,8 @@ extension BaseMusicKey {
     }
     
     func stopNoise() -> Void {
-        let mySampler = TimbreManager.getSampler(timbre: self.toneKey)
-        try! mySampler.stop(noteNumber: self.pitch, channel: 1)
+        let mySampler = TimbreManager.getSampler(keyIndex: self.mainKey)
+        try! mySampler.stop(noteNumber: self.lastPressedNote, channel: 1)
+        
     }
 }

@@ -12,8 +12,9 @@ import AudioKit
 class SoundEngine: NSObject {
     
     var mixer  = AKMixer()
+    
     //这里key是音色的枚举， 对应一个midiSampler
-    var timbreDict = [Int:AKMIDISampler]()
+    var timbreDict = [Int: AKMIDISampler]()
     
     //这里设置总的混响，延音等
     
@@ -30,14 +31,14 @@ class SoundEngine: NSObject {
         super.init()
     }
     
-    func GetSampler(timbre:Int) -> AKMIDISampler{
+    func GetSampler(keyIndex: Int) -> AKMIDISampler{
   
-        let returnValue = self.timbreDict[timbre]
+        let returnValue = self.timbreDict[keyIndex]
         return returnValue!
     }
     
-    func RegistTimbre(timbre:Int,sampler: AKMIDISampler){
-        self.timbreDict.updateValue(sampler, forKey: timbre)
+    func RegistTimbre(keyIndex:Int, sampler: AKMIDISampler){
+        self.timbreDict.updateValue(sampler, forKey: keyIndex)
         mixer.connect(input: sampler)
     }
     

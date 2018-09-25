@@ -20,6 +20,8 @@ class ViewController: UIViewController {
         self.setData()
         self.setUI()
         
+        
+        
     }
 
     override func didReceiveMemoryWarning() {

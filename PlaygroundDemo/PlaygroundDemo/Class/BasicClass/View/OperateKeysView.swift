@@ -16,7 +16,6 @@ class OperateKeysView: UIView {
     /// 按钮frame数组
     var musicKeyViewModelArray: [MusicKeyViewModel] = []
 
-    
     /// touch事件的内存地址: 该touch事件经过的最后一个按钮
     var lastTouchKeyDict: [String: BaseMusicKey?] = [String: BaseMusicKey?]()
     
@@ -144,34 +143,39 @@ extension OperateKeysView {
         
         for viewModel in self.musicKeyViewModelArray {
             
-            
             var musicKey: BaseMusicKey
-            let pitchName = MusicKeyAttributesModel.keyTonePitchIndexArray[viewModelIndex]
+            let normalFileArray = MusicAttributesModel.toneFileWithKeyArray[viewModelIndex].first!
+            var tomeModelArray: [ToneItemModel] = []
             
+            for fileName in normalFileArray {
+                let model = ToneItemModel.init(toneFileName: fileName)
+                tomeModelArray.append(model)
+            }
+
             if viewModel.ownKind == .Movable {
+                
                 musicKey = BaseMovableMusicKey.init(
                     frame: viewModel.ownFrame,
                     mainKey: viewModelIndex,
                     borderColor: .white,
-                    toneKey: MusicKeyAttributesModel.keyToneIndexArray[viewModelIndex],
-                    pitch: MusicMessageProcessing.getMidiNoteFromString(pitchName) - 12,
+                    tomeModelArray: tomeModelArray,
                     kind: viewModel.ownKind
                 )
                 
             }else {
+
                 musicKey = BaseMusicKey.init(
                     frame: viewModel.ownFrame,
                     mainKey: viewModelIndex,
                     borderColor: .white,
-                    toneKey: MusicKeyAttributesModel.keyToneIndexArray[viewModelIndex],
-                    pitch: MusicMessageProcessing.getMidiNoteFromString(pitchName) - 12,
+                    tomeModelArray: tomeModelArray,
                     kind: viewModel.ownKind
                 )
                 
             }
 
             switch viewModel.ownKind {
-            case .Movable:
+            case .Movable?:
                 musicKey.borderColor = UIColor.clear
                 musicKey.backgroundColor = UIColor.flatOrange
                 let panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(self.draggedView(_:)))
@@ -179,7 +183,7 @@ extension OperateKeysView {
                 musicKey.addGestureRecognizer(panGesture)
                 
                 
-            case .BorderVariable:
+            case .BorderVariable?:
                 musicKey.borderColor = UIColor.flatOrange
                 
             default:
@@ -251,6 +255,9 @@ extension OperateKeysView {
             
             // 本次点击的按钮
             let pressedKey = self.judgeTouchMusicKey(touch.location(in: self))
+            
+//            previousPressedKey?.pressStatus = .Unpressed
+            
             
             // 本次点击的按钮不为空
             if pressedKey != nil {

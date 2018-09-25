@@ -19,38 +19,38 @@ class TimbreManager: NSObject {
         self.initAllTimbre()
     }
     
-    static func getSampler(timbre: MusicKeyAttributesModel.KeyToneAggregate) ->AKMIDISampler{
+    static func getSampler(keyIndex: Int) ->AKMIDISampler{
         
-        return self.soundEngine.GetSampler(timbre: timbre.rawValue)
+        return self.soundEngine.GetSampler(keyIndex: keyIndex)
     }
     
     /// 初始化所有音色
     private func initAllTimbre() -> Void {
-        
-        for index in 0 ..< MusicAttributesModel.toneWithFileArray.count {
+        for index in 0 ..< MusicAttributesModel.toneFileWithKeyArray.count {
+            let normalFileNameArray = MusicAttributesModel.toneFileWithKeyArray[index].first!
+            let highFileNameArray = MusicAttributesModel.toneFileWithKeyArray[index].last!
+            
+            let normalAudioFileArray = self.getAKAudioFileArrayFrom(normalFileNameArray)
+            let highAudioFileArray = self.getAKAudioFileArrayFrom(highFileNameArray)
+            
             let sampler: AKMIDISampler = {
                 let tmpSampler = AKMIDISampler()
+                try! tmpSampler.loadAudioFiles(normalAudioFileArray + highAudioFileArray)
                 
-                // TODO: BUG
-                let audioFileArray = self.getAKAudioFileArrayFrom(index)
-
-                try! tmpSampler.loadAudioFiles(audioFileArray)
-                
-                //try! tmpSampler.loadMelodicSoundFont("GeneralUserPiano", preset: 0)
                 return tmpSampler
             }()
             
-            TimbreManager.soundEngine.RegistTimbre(timbre: index, sampler: sampler)
+            TimbreManager.soundEngine.RegistTimbre(keyIndex: index, sampler: sampler)
         }
+        
         
     }// funcEnd
     
 }
 
 extension TimbreManager {
-    /// 通过toneWithFileArray的Index 返回一个AKAudioFile数组
-    func getAKAudioFileArrayFrom(_ arrayIndex: Int) -> [AKAudioFile] {
-        let fileNameArray = MusicAttributesModel.toneWithFileArray[arrayIndex]
+    /// 通过一个文件名数组 返回一个AKAudioFile数组
+    func getAKAudioFileArrayFrom(_ fileNameArray: [String]) -> [AKAudioFile] {
         var audioFileArray: [AKAudioFile] = []
         
         for fileName in fileNameArray {
