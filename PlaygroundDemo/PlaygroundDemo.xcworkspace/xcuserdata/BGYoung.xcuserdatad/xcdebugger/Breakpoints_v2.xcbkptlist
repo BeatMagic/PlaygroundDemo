@@ -9,14 +9,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "PlaygroundDemo/Class/BasicClass/View/BaseMusicKey.swift"
-            timestampString = "559566795.6936671"
+            filePath = "PlaygroundDemo/Class/BasicClass/View/OperateKeysView.swift"
+            timestampString = "559619133.433977"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "pressStatus"
-            landmarkType = "24">
+            startingLineNumber = "235"
+            endingLineNumber = "235"
+            landmarkName = "touchesBegan(_:with:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

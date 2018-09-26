@@ -89,6 +89,7 @@ class BaseMusicKey: UIView {
 extension BaseMusicKey {
     /// 设置UI
     func setUI() -> Void {
+        self.isUserInteractionEnabled = false
         self.backgroundColor = UIColor.black
         self.layer.borderColor = self.borderColor.cgColor
         self.layer.borderWidth = FrameStandard.KeyBorderWidthAggregate.normal.rawValue

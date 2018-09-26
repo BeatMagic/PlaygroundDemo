@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     var keysView: OperateKeysView!
     
     var timbreMgr: TimbreManager!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()

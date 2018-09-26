@@ -180,6 +180,8 @@ extension OperateKeysView {
                 musicKey.backgroundColor = UIColor.flatOrange
                 let panGesture = UIPanGestureRecognizer.init(target: self, action: #selector(self.draggedView(_:)))
                 panGesture.cancelsTouchesInView = false
+                panGesture.delaysTouchesBegan = false
+                panGesture.delaysTouchesEnded = false
                 musicKey.addGestureRecognizer(panGesture)
                 
                 
@@ -220,13 +222,21 @@ extension OperateKeysView {
         
     }
     
+    /// 每个按钮的点击事件
+    @objc func clickMusicKey() -> Void {
+        
+    }// funcEnd
+    
 }
 
 // MARK: - 重载Touch事件
 extension OperateKeysView {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        
         for touch in touches {
             let touchAddress = String(format: "%p",  touch)
+            print("点击")
             
             let pressedKey = self.judgeTouchMusicKey(touch.location(in: self))
             self.lastTouchKeyDict[touchAddress] = pressedKey
@@ -248,6 +258,8 @@ extension OperateKeysView {
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesMoved(touches, with: event)
+        
         for touch in touches {
             let touchAddress = String(format: "%p",  touch)
             // 上次点击的按钮
@@ -306,15 +318,17 @@ extension OperateKeysView {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesEnded(touches, with: event)
         
         for touch in touches {
+
             let touchAddress = String(format: "%p",  touch)
             let lastKey = self.lastTouchKeyDict[touchAddress]!
             if lastKey != nil {
                 lastKey!.pressStatus = .Unpressed
-                
+
             }
-            
+
             self.lastTouchKeyDict.removeValue(forKey: touchAddress)
 
         }
@@ -322,6 +336,8 @@ extension OperateKeysView {
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesCancelled(touches, with: event)
+        
         for touch in touches {
             let touchAddress = String(format: "%p",  touch)
             let lastKey = self.lastTouchKeyDict[touchAddress]!
