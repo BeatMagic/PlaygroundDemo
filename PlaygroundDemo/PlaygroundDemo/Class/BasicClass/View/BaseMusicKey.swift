@@ -82,11 +82,6 @@ class BaseMusicKey: UIView {
     }
     
 
-    
-}
-
-// MARK: - 设置自身属性
-extension BaseMusicKey {
     /// 设置UI
     func setUI() -> Void {
         self.isUserInteractionEnabled = false
@@ -96,6 +91,11 @@ extension BaseMusicKey {
         self.layer.cornerRadius = FrameStandard.KeyBorderWidthAggregate.normal.rawValue * 4
         
     }// funcEnd
+    
+}
+
+// MARK: - 设置自身属性
+extension BaseMusicKey {
     
     /// 设置数据
      @objc func setData() -> Void {
